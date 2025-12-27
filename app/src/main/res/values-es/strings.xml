@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">programacion-multimedia-aa1</string>
+    <string name="app_name">CineScope</string>
     <string name="no">No</string>
+    <string name="movie_title">Título de la Película</string>
+    <string name="genre">Género</string>
+    <string name="release_date">Fecha de lanzamiento</string>
+    <string name="rating">Puntuación</string>
 </resources>
