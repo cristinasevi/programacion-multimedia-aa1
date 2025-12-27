@@ -58,6 +58,7 @@ public class RegisterMovieView extends AppCompatActivity implements RegisterMovi
         String genre = ((EditText) findViewById(R.id.movie_genre)).getText().toString();
         LocalDate releaseDate = DateUtil.parseDate(((EditText) findViewById(R.id.movie_release_date)).getText().toString());
         String durationStr = ((EditText) findViewById(R.id.movie_duration)).getText().toString();
+        String ratingStr = ((EditText) findViewById(R.id.movie_rating)).getText().toString();
 
         Spinner studioSpinner = findViewById(R.id.movie_studio);
         Studio selectedStudio = (Studio) studioSpinner.getSelectedItem();
@@ -67,11 +68,22 @@ public class RegisterMovieView extends AppCompatActivity implements RegisterMovi
         try {
             duration = Integer.parseInt(durationStr);
         } catch (NumberFormatException e) {
-            showValidationError("La duración debe ser un número válido");
+            showValidationError(getString(R.string.duration_must_be_a_valid_number));
             return;
         }
 
-        presenter.registerMovie(title, synopsis, genre, releaseDate, duration, selectedStudio);
+        // Validar rating
+        float rating = 0.0f;
+        if (!ratingStr.isEmpty()) {
+            try {
+                rating = Float.parseFloat(ratingStr);
+            } catch (NumberFormatException e) {
+                showValidationError(getString(R.string.rating_must_be_a_valid_number));
+                return;
+            }
+        }
+
+        presenter.registerMovie(title, synopsis, genre, releaseDate, duration, rating, selectedStudio);
     }
 
     public void selectImage(View view) {

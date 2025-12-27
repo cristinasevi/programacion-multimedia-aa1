@@ -5,6 +5,7 @@ import java.util.List;
 import programacion.multimedia.aa1.domain.Movie;
 import programacion.multimedia.aa1.domain.Review;
 import programacion.multimedia.aa1.domain.Studio;
+import programacion.multimedia.aa1.dto.MovieCreateRequest;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -27,7 +28,7 @@ public interface MovieApiInterface {
     Call<Movie> getMovie(@Path("id") long id);
 
     @POST("movies")
-    Call<Movie> registerMovie(@Body Movie movie);
+    Call<Movie> registerMovie(@Body MovieCreateRequest movieRequest);
 
     @PUT("movies/{id}")
     Call<Movie> updateMovie(@Path("id") long id, @Body Movie movie);

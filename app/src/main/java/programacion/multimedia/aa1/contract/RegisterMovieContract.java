@@ -5,6 +5,7 @@ import java.util.List;
 
 import programacion.multimedia.aa1.domain.Movie;
 import programacion.multimedia.aa1.domain.Studio;
+import programacion.multimedia.aa1.dto.MovieCreateRequest;
 
 public interface RegisterMovieContract {
 
@@ -19,7 +20,7 @@ public interface RegisterMovieContract {
             void onLoadError(String message);
         }
 
-        void registerMovie(Movie movie, OnRegisterListener listener);
+        void registerMovie(MovieCreateRequest movieRequest, OnRegisterListener listener);
         void loadStudios(OnLoadStudiosListener listener);
     }
 
@@ -32,7 +33,8 @@ public interface RegisterMovieContract {
     }
 
     interface Presenter {
-        void registerMovie(String title, String synopsis, String genre, LocalDate releaseDate, int duration, Studio studio);
+        void registerMovie(String title, String synopsis, String genre, LocalDate releaseDate,
+                           int duration, float rating, Studio studio);
         void loadStudios();
     }
 }

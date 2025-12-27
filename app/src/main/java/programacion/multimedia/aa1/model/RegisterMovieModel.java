@@ -1,5 +1,7 @@
 package programacion.multimedia.aa1.model;
 
+import android.util.Log;
+
 import java.util.List;
 
 import programacion.multimedia.aa1.api.MovieApi;
@@ -7,6 +9,7 @@ import programacion.multimedia.aa1.api.MovieApiInterface;
 import programacion.multimedia.aa1.contract.RegisterMovieContract;
 import programacion.multimedia.aa1.domain.Movie;
 import programacion.multimedia.aa1.domain.Studio;
+import programacion.multimedia.aa1.dto.MovieCreateRequest;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -14,9 +17,12 @@ import retrofit2.Response;
 public class RegisterMovieModel implements RegisterMovieContract.Model {
 
     @Override
-    public void registerMovie(Movie movie, OnRegisterListener listener) {
+    public void registerMovie(MovieCreateRequest movieRequest, OnRegisterListener listener) {
         MovieApiInterface api = MovieApi.buildInstance();
-        Call<Movie> postMovieCall = api.registerMovie(movie);
+
+        Log.d("API_REGISTER", "Enviando película: " + movieRequest.toString());
+
+        Call<Movie> postMovieCall = api.registerMovie(movieRequest);
         postMovieCall.enqueue(new Callback<Movie>() {
             @Override
             public void onResponse(Call<Movie> call, Response<Movie> response) {

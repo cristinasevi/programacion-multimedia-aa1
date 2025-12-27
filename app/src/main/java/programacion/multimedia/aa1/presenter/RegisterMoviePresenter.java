@@ -6,6 +6,7 @@ import java.util.List;
 import programacion.multimedia.aa1.contract.RegisterMovieContract;
 import programacion.multimedia.aa1.domain.Movie;
 import programacion.multimedia.aa1.domain.Studio;
+import programacion.multimedia.aa1.dto.MovieCreateRequest;
 import programacion.multimedia.aa1.model.RegisterMovieModel;
 
 public class RegisterMoviePresenter implements
@@ -22,33 +23,34 @@ public class RegisterMoviePresenter implements
     }
 
     @Override
-    public void registerMovie(String title, String synopsis, String genre, LocalDate releaseDate, int duration, Studio studio) {
+    public void registerMovie(String title, String synopsis, String genre, LocalDate releaseDate, int duration, float rating, Studio studio) {
         // Validaciones
         if (title.isEmpty()) {
-            view.showValidationError("El título es un campo obligatorio");
+            view.showValidationError("Title is mandatory");
             return;
         }
 
         if (duration <= 0) {
-            view.showValidationError("La duración debe ser mayor a 0");
+            view.showValidationError("Duration must be greater than 0");
             return;
         }
 
         if (studio == null) {
-            view.showValidationError("Debes seleccionar un estudio");
+            view.showValidationError("You must select a studio");
             return;
         }
 
-        Movie movie = Movie.builder()
+        MovieCreateRequest movieRequest = MovieCreateRequest.builder()
                 .title(title)
                 .synopsis(synopsis)
                 .genre(genre)
                 .releaseDate(releaseDate)
                 .duration(duration)
-                .studio(studio)
+                .averageRating(rating)
+                .studioId(studio.getId())
                 .build();
 
-        model.registerMovie(movie, this);
+        model.registerMovie(movieRequest, this);
     }
 
     @Override
@@ -59,7 +61,7 @@ public class RegisterMoviePresenter implements
     // Callbacks de registro
     @Override
     public void onRegisterSuccess(Movie movie) {
-        view.showMessage("Se ha registrado la película correctamente");
+        view.showMessage("The movie has been successfully registered");
         view.navigateToMovieList();
     }
 

@@ -10,4 +10,7 @@
     <string name="studio">Productora</string>
     <string name="duration">Duración</string>
     <string name="synopsis">Sinopsis</string>
+    <string name="rating_0_10">Valoración (0-10)</string>
+    <string name="duration_must_be_a_valid_number">La duración debe ser un número válido</string>
+    <string name="rating_must_be_a_valid_number">La valoración debe ser un número válido</string>
 </resources>

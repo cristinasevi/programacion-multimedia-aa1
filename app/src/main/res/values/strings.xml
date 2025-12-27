@@ -9,4 +9,7 @@
     <string name="studio">Studio</string>
     <string name="duration">Duration</string>
     <string name="synopsis">Synopsis</string>
+    <string name="rating_0_10">Rating (0-10)</string>
+    <string name="duration_must_be_a_valid_number">Duration must be a valid number</string>
+    <string name="rating_must_be_a_valid_number">Rating must be a valid number</string>
 </resources>
