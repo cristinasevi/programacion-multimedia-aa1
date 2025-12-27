@@ -19,4 +19,9 @@ public class Studio {
     private boolean active;
     private double latitude;
     private double longitude;
+
+    @Override
+    public String toString() {
+        return name; // Muestra solo el campo name en el Spinner
+    }
 }

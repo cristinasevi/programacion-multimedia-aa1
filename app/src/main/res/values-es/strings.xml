@@ -4,6 +4,10 @@
     <string name="no">No</string>
     <string name="movie_title">Título de la Película</string>
     <string name="genre">Género</string>
-    <string name="release_date">Fecha de lanzamiento</string>
+    <string name="release_date">Fecha (YYYY-MM-DD)</string>
     <string name="rating">Puntuación</string>
+    <string name="register">Registrar</string>
+    <string name="studio">Productora</string>
+    <string name="duration">Duración</string>
+    <string name="synopsis">Sinopsis</string>
 </resources>
