@@ -39,12 +39,20 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     implementation(libs.recyclerview)
+    // Mapbox
     implementation("com.mapbox.maps:android:10.9.1")
+    // Room
     implementation("androidx.room:room-runtime:2.8.2")
     annotationProcessor("androidx.room:room-compiler:2.8.2")
+    // Lombok
     compileOnly("org.projectlombok:lombok:1.18.42")
     annotationProcessor("org.projectlombok:lombok:1.18.42")
+    // Retrofit
     implementation("com.squareup.retrofit2:retrofit:3.0.0")
     implementation("com.squareup.retrofit2:converter-gson:3.0.0")
+    // Glide para cargar imágenes
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
+    // Preferences
     implementation("androidx.preference:preference:1.2.0")
 }
