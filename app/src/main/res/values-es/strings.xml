@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">CineScope</string>
+    <string name="yes">Sí</string>
     <string name="no">No</string>
     <string name="movie_title">Título de la Película</string>
     <string name="genre">Género</string>
@@ -13,4 +14,10 @@
     <string name="rating_0_10">Valoración (0-10)</string>
     <string name="duration_must_be_a_valid_number">La duración debe ser un número válido</string>
     <string name="rating_must_be_a_valid_number">La valoración debe ser un número válido</string>
+    <string name="favorite">Favorito</string>
+    <string name="reviews">Reseñas</string>
+    <string name="map">Mapa</string>
+    <string name="edit">Editar</string>
+    <string name="delete">Eliminar</string>
+    <string name="confirm_delete">¿Estás seguro?</string>
 </resources>

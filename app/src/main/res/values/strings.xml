@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">CineScope</string>
+    <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="movie_title">Movie Title</string>
     <string name="genre">Genre</string>
@@ -12,4 +13,10 @@
     <string name="rating_0_10">Rating (0-10)</string>
     <string name="duration_must_be_a_valid_number">Duration must be a valid number</string>
     <string name="rating_must_be_a_valid_number">Rating must be a valid number</string>
+    <string name="favorite">Favorite</string>
+    <string name="reviews">Reviews</string>
+    <string name="map">Map</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="confirm_delete">Are you sure?</string>
 </resources>

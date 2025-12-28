@@ -1,6 +1,7 @@
 package programacion.multimedia.aa1.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import java.util.List;
 import programacion.multimedia.aa1.R;
 import programacion.multimedia.aa1.domain.Movie;
 import programacion.multimedia.aa1.util.DateUtil;
+import programacion.multimedia.aa1.view.MovieDetailView;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder> {
 
@@ -62,6 +64,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder>
         } else {
             holder.movieImage.setImageResource(android.R.drawable.ic_menu_gallery);
         }
+
+        // Navegar a MovieDetail
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, MovieDetailView.class);
+            intent.putExtra(MovieDetailView.movie_id, movie.getId());
+            context.startActivity(intent);
+        });
     }
 
     @Override
@@ -85,10 +94,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder>
             movieGenre = itemView.findViewById(R.id.movie_genre);
             movieReleaseDate = itemView.findViewById(R.id.movie_release_date);
             movieRating = itemView.findViewById(R.id.movie_rating);
-
-            itemView.setOnClickListener(view -> {
-                // ToDo Abrir detalle de película y hacer botón añadir a favoritos y eliminar película
-            });
         }
     }
 }
