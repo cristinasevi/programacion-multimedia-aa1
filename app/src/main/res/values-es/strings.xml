@@ -20,4 +20,7 @@
     <string name="edit">Editar</string>
     <string name="delete">Eliminar</string>
     <string name="confirm_delete">¿Estás seguro?</string>
+    <string name="remove_from_favorites">¿Eliminar de favoritos?</string>
+    <string name="no_favorites_yet">Aún no hay favoritos</string>
+    <string name="removed_from_favorites">Eliminado de favoritos</string>
 </resources>

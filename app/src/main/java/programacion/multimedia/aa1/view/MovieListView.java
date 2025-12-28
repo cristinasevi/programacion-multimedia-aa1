@@ -79,11 +79,15 @@ public class MovieListView extends AppCompatActivity implements MovieListContrac
         if (item.getItemId() == R.id.action_register_movie) {
             Intent intent = new Intent(this, RegisterMovieView.class);
             startActivity(intent);
-
+            return true;
+        } else if (item.getItemId() == R.id.action_favorites) {
+            Intent intent = new Intent(this, FavoritesView.class);
+            startActivity(intent);
             return true;
         } else if (item.getItemId() == R.id.action_preferences_item) {
             Intent intent = new Intent(this, PreferencesActivity.class);
             startActivity(intent);
+            return true;
         }
 
         return false;
