@@ -1,6 +1,7 @@
 package programacion.multimedia.aa1.view;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -169,7 +170,9 @@ public class MovieDetailView extends AppCompatActivity implements MovieDetailCon
     }
 
     private void editMovie() {
-        Toast.makeText(this, "Edit movie - To be implemented", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, EditMovieView.class);
+        intent.putExtra(EditMovieView.MOVIE_ID, movieId);
+        startActivity(intent);
     }
 
     private void viewReviews() {
