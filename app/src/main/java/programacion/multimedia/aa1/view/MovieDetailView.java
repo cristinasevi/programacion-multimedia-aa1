@@ -108,9 +108,9 @@ public class MovieDetailView extends AppCompatActivity implements MovieDetailCon
         durationTextView.setText(movie.getDuration() + " min");
 
         if (movie.getReleaseDate() != null) {
-            releaseDateTextView.setText(getString(R.string.release_date) + ": " + DateUtil.formatDate(movie.getReleaseDate()));
+            releaseDateTextView.setText(DateUtil.formatDate(movie.getReleaseDate()));
         } else {
-            releaseDateTextView.setText(getString(R.string.release_date) + ": N/A");
+            releaseDateTextView.setText("N/A");
         }
 
         if (movie.getStudio() != null) {

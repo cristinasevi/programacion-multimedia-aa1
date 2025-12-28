@@ -26,7 +26,6 @@
             android:id="@+id/favorite_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/movie_title"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -34,21 +33,17 @@
         <TextView
             android:id="@+id/favorite_genre"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/genre" />
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/favorite_release_date"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/release_date"
-            android:inputType="datetime|date" />
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/favorite_rating"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/rating"
             android:textColor="#FFC107"
             android:layout_marginTop="4dp"
             android:textStyle="bold" />
