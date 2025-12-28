@@ -1,7 +1,6 @@
 package programacion.multimedia.aa1.view;
 
 import android.app.AlertDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -16,6 +15,9 @@ import com.google.android.material.snackbar.Snackbar;
 
 import programacion.multimedia.aa1.R;
 import programacion.multimedia.aa1.contract.MovieDetailContract;
+import programacion.multimedia.aa1.db.FavoriteMovieDao;
+import programacion.multimedia.aa1.db.DatabaseUtil;
+import programacion.multimedia.aa1.domain.FavoriteMovie;
 import programacion.multimedia.aa1.domain.Movie;
 import programacion.multimedia.aa1.presenter.MovieDetailPresenter;
 import programacion.multimedia.aa1.util.DateUtil;
@@ -26,6 +28,7 @@ public class MovieDetailView extends AppCompatActivity implements MovieDetailCon
     public static final String movie_id = "movie_id";
 
     private MovieDetailContract.Presenter presenter;
+    private FavoriteMovieDao favoriteMovieDao;
     private long movieId;
     private Movie currentMovie;
 
@@ -57,6 +60,8 @@ public class MovieDetailView extends AppCompatActivity implements MovieDetailCon
         }
 
         presenter = new MovieDetailPresenter(this);
+        favoriteMovieDao = DatabaseUtil.getDb(this).favoriteMovieDao();
+
         initViews();
         setupListeners();
         presenter.loadMovie(movieId);
@@ -99,7 +104,6 @@ public class MovieDetailView extends AppCompatActivity implements MovieDetailCon
         }
 
         genreTextView.setText(getString(R.string.genre) + ": " + (movie.getGenre() != null ? movie.getGenre() : "N/A"));
-
         durationTextView.setText(movie.getDuration() + " min");
 
         if (movie.getReleaseDate() != null) {
@@ -130,8 +134,9 @@ public class MovieDetailView extends AppCompatActivity implements MovieDetailCon
             posterImageView.setImageResource(android.R.drawable.ic_menu_gallery);
         }
 
-        // TODO: Cargar estado de favorito desde BD local
-        // favoriteCheckBox.setChecked(isFavorite);
+        // Cargar estado de favorito
+        boolean isFavorite = favoriteMovieDao.findByTitle(movie.getTitle()) != null;
+        favoriteCheckBox.setChecked(isFavorite);
     }
 
     @Override
@@ -176,10 +181,28 @@ public class MovieDetailView extends AppCompatActivity implements MovieDetailCon
     }
 
     private void toggleFavorite(boolean isChecked) {
+        if (currentMovie == null) return;
+
         if (isChecked) {
-            Toast.makeText(this, "Added to favorites - To be implemented", Toast.LENGTH_SHORT).show();
+            // Añadir a favoritos
+            FavoriteMovie favorite = FavoriteMovie.builder()
+                    .title(currentMovie.getTitle())
+                    .synopsis(currentMovie.getSynopsis())
+                    .releaseDate(currentMovie.getReleaseDate())
+                    .duration(currentMovie.getDuration())
+                    .genre(currentMovie.getGenre())
+                    .averageRating(currentMovie.getAverageRating())
+                    .imageUrl(currentMovie.getImageUrl())
+                    .studioName(currentMovie.getStudio() != null ? currentMovie.getStudio().getName() : null)
+                    .directorName(currentMovie.getDirector() != null ? currentMovie.getDirector().getName() : null)
+                    .build();
+
+            favoriteMovieDao.insert(favorite);
+            Toast.makeText(this, "Added to favorites", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "Removed from favorites - To be implemented", Toast.LENGTH_SHORT).show();
+            // Eliminar de favoritos
+            favoriteMovieDao.deleteByTitle(currentMovie.getTitle());
+            Toast.makeText(this, "Removed from favorites", Toast.LENGTH_SHORT).show();
         }
     }
 }
