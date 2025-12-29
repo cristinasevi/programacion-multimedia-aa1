@@ -32,4 +32,9 @@
     <string name="tick_recommended">✓ Recommended</string>
     <string name="not_recommended">✗ Not recommended</string>
     <string name="no_reviews_yet">No reviews yet</string>
+    <string name="confirm_delete_review">Delete this review?</string>
+    <string name="review_deleted_successfully">Review deleted successfully</string>
+    <string name="review_not_found">Review not found</string>
+    <string name="error_deleting_review">Error deleting review</string>
+    <string name="edit_review">Edit Review</string>
 </resources>

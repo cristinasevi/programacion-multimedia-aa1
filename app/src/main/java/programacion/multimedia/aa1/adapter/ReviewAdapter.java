@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,10 +20,17 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewHold
 
     private Context context;
     private List<Review> reviewList;
+    private OnReviewActionListener actionListener;
 
-    public ReviewAdapter(Context context, List<Review> reviewList) {
+    public interface OnReviewActionListener {
+        void onEditClick(Review review);
+        void onDeleteClick(Review review);
+    }
+
+    public ReviewAdapter(Context context, List<Review> reviewList, OnReviewActionListener actionListener) {
         this.context = context;
         this.reviewList = reviewList;
+        this.actionListener = actionListener;
     }
 
     @NonNull
@@ -52,6 +60,9 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewHold
 
         holder.reviewRecommended.setText(review.isRecommended() ? context.getString(R.string.tick_recommended) : context.getString(R.string.not_recommended));
         holder.reviewSpoiler.setVisibility(review.isSpoiler() ? View.VISIBLE : View.GONE);
+
+        holder.buttonEdit.setOnClickListener(v -> actionListener.onEditClick(review));
+        holder.buttonDelete.setOnClickListener(v -> actionListener.onDeleteClick(review));
     }
 
     @Override
@@ -67,6 +78,8 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewHold
         private TextView reviewDate;
         private TextView reviewRecommended;
         private TextView reviewSpoiler;
+        private Button buttonEdit;
+        private Button buttonDelete;
 
         public ReviewHolder(@NonNull View itemView) {
             super(itemView);
@@ -77,6 +90,8 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewHold
             reviewDate = itemView.findViewById(R.id.review_date);
             reviewRecommended = itemView.findViewById(R.id.review_recommended);
             reviewSpoiler = itemView.findViewById(R.id.review_spoiler);
+            buttonEdit = itemView.findViewById(R.id.button_edit_review);
+            buttonDelete = itemView.findViewById(R.id.button_delete_review);
         }
     }
 }

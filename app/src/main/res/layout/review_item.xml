@@ -61,6 +61,32 @@
             android:layout_marginTop="4dp"
             android:text="@string/contains_spoilers" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button_edit_review"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                android:text="@string/edit"
+                app:icon="@android:drawable/ic_menu_edit" />
+
+            <Button
+                android:id="@+id/button_delete_review"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_weight="1"
+                android:backgroundTint="#F44336"
+                android:text="@string/delete"
+                app:icon="@android:drawable/ic_menu_delete" />
+        </LinearLayout>
+
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
