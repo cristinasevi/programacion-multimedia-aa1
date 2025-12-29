@@ -176,7 +176,9 @@ public class MovieDetailView extends AppCompatActivity implements MovieDetailCon
     }
 
     private void viewReviews() {
-        Toast.makeText(this, "View reviews - To be implemented", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, ReviewListView.class);
+        intent.putExtra(ReviewListView.MOVIE_ID, movieId);
+        startActivity(intent);
     }
 
     private void viewStudioOnMap() {

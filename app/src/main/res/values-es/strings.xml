@@ -24,4 +24,13 @@
     <string name="no_favorites_yet">Aún no hay favoritos</string>
     <string name="removed_from_favorites">Eliminado de favoritos</string>
     <string name="update">Actualizar</string>
+    <string name="write_review">Escribir Reseña</string>
+    <string name="comment">Comentario</string>
+    <string name="review_date">Fecha de Reseña (YYYY-MM-DD)</string>
+    <string name="recommended">Recomiendo esta película</string>
+    <string name="contains_spoilers">⚠️ Contiene spoilers</string>
+    <string name="submit_review">Enviar Reseña</string>
+    <string name="tick_recommended">✓ Recomendada</string>
+    <string name="not_recommended">✗ No recomendada</string>
+    <string name="no_reviews_yet">Aún no hay reseñas</string>
 </resources>
