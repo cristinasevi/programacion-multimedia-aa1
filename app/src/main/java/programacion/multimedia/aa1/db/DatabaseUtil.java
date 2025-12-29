@@ -9,6 +9,8 @@ import androidx.room.Room;
 public class DatabaseUtil {
     public static MovieDatabase getDb(Context context) {
         return Room.databaseBuilder(context, MovieDatabase.class, DATABASE_NAME)
-                .allowMainThreadQueries().build();
+                .fallbackToDestructiveMigration()
+                .allowMainThreadQueries()
+                .build();
     }
 }

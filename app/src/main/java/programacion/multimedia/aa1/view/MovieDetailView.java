@@ -190,17 +190,17 @@ public class MovieDetailView extends AppCompatActivity implements MovieDetailCon
 
         if (isChecked) {
             // Añadir a favoritos
-            FavoriteMovie favorite = FavoriteMovie.builder()
-                    .title(currentMovie.getTitle())
-                    .synopsis(currentMovie.getSynopsis())
-                    .releaseDate(currentMovie.getReleaseDate())
-                    .duration(currentMovie.getDuration())
-                    .genre(currentMovie.getGenre())
-                    .averageRating(currentMovie.getAverageRating())
-                    .imageUrl(currentMovie.getImageUrl())
-                    .studioName(currentMovie.getStudio() != null ? currentMovie.getStudio().getName() : null)
-                    .directorName(currentMovie.getDirector() != null ? currentMovie.getDirector().getName() : null)
-                    .build();
+            FavoriteMovie favorite = new FavoriteMovie(
+                    currentMovie.getTitle(),
+                    currentMovie.getSynopsis(),
+                    currentMovie.getReleaseDate(),
+                    currentMovie.getDuration(),
+                    currentMovie.getGenre(),
+                    currentMovie.getAverageRating(),
+                    currentMovie.getImageUrl(),
+                    currentMovie.getStudio() != null ? currentMovie.getStudio().getName() : null,
+                    currentMovie.getDirector() != null ? currentMovie.getDirector().getName() : null
+            );
 
             favoriteMovieDao.insert(favorite);
             Toast.makeText(this, "Added to favorites", Toast.LENGTH_SHORT).show();
