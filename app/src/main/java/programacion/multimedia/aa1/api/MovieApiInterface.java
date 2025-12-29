@@ -6,6 +6,7 @@ import programacion.multimedia.aa1.domain.Movie;
 import programacion.multimedia.aa1.domain.Review;
 import programacion.multimedia.aa1.domain.Studio;
 import programacion.multimedia.aa1.dto.MovieCreateRequest;
+import programacion.multimedia.aa1.dto.ReviewCreateRequest;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -47,7 +48,7 @@ public interface MovieApiInterface {
     Call<Review> getReview(@Path("id") long id);
 
     @POST("movies/{movieId}/reviews")
-    Call<Review> registerReview(@Path("movieId") long movieId, @Body Review review);
+    Call<Review> registerReview(@Path("movieId") long movieId, @Body ReviewCreateRequest reviewRequest);
 
     @PUT("reviews/{id}")
     Call<Review> updateReview(@Path("id") long id, @Body Review review);
