@@ -182,7 +182,8 @@ public class MovieDetailView extends AppCompatActivity implements MovieDetailCon
     }
 
     private void viewStudioOnMap() {
-        Toast.makeText(this, "View map - To be implemented", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, StudiosMapView.class);
+        startActivity(intent);
     }
 
     private void toggleFavorite(boolean isChecked) {
