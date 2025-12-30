@@ -10,9 +10,9 @@ import java.time.LocalDate;
 @Entity(tableName = "favorite_movies")
 public class FavoriteMovie {
 
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
-    private long id;
+    @PrimaryKey
+    @ColumnInfo(name = "movie_id")
+    private long movieId;
 
     @ColumnInfo(name = "title")
     private String title;
@@ -44,11 +44,12 @@ public class FavoriteMovie {
     // Constructor vacío (requerido por Room)
     public FavoriteMovie() {
     }
-    
+
     @Ignore
-    public FavoriteMovie(String title, String synopsis, LocalDate releaseDate, int duration,
-                         String genre, float averageRating, String imageUrl,
+    public FavoriteMovie(long movieId, String title, String synopsis, LocalDate releaseDate,
+                         int duration, String genre, float averageRating, String imageUrl,
                          String studioName, String directorName) {
+        this.movieId = movieId;
         this.title = title;
         this.synopsis = synopsis;
         this.releaseDate = releaseDate;
@@ -60,12 +61,12 @@ public class FavoriteMovie {
         this.directorName = directorName;
     }
 
-    public long getId() {
-        return id;
+    public long getMovieId() {
+        return movieId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setMovieId(long movieId) {
+        this.movieId = movieId;
     }
 
     public String getTitle() {

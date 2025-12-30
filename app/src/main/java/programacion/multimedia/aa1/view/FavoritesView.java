@@ -1,6 +1,7 @@
 package programacion.multimedia.aa1.view;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -37,7 +38,12 @@ public class FavoritesView extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        favoriteAdapter = new FavoriteAdapter(this, favoriteList, this::showDeleteDialog);
+        favoriteAdapter = new FavoriteAdapter(
+                this,
+                favoriteList,
+                this::showDeleteDialog,
+                this::openMovieDetail
+        );
         recyclerView.setAdapter(favoriteAdapter);
 
         loadFavorites();
@@ -72,5 +78,11 @@ public class FavoritesView extends AppCompatActivity {
         });
 
         builder.show();
+    }
+
+    private void openMovieDetail(FavoriteMovie favorite) {
+        Intent intent = new Intent(this, MovieDetailView.class);
+        intent.putExtra(MovieDetailView.movie_id, favorite.getMovieId());
+        startActivity(intent);
     }
 }

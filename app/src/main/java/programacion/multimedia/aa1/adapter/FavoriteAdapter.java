@@ -24,15 +24,23 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
     private Context context;
     private List<FavoriteMovie> favoriteList;
     private OnDeleteClickListener deleteListener;
+    private OnItemClickListener itemClickListener;
+
+    public interface OnItemClickListener {
+        void onItemClick(FavoriteMovie favorite);
+    }
 
     public interface OnDeleteClickListener {
         void onDeleteClick(FavoriteMovie favorite);
     }
 
-    public FavoriteAdapter(Context context, List<FavoriteMovie> favoriteList, OnDeleteClickListener deleteListener) {
+    public FavoriteAdapter(Context context, List<FavoriteMovie> favoriteList,
+                           OnDeleteClickListener deleteListener,
+                           OnItemClickListener itemClickListener) {
         this.context = context;
         this.favoriteList = favoriteList;
         this.deleteListener = deleteListener;
+        this.itemClickListener = itemClickListener;
     }
 
     @NonNull
@@ -70,7 +78,19 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
             holder.favoriteImage.setImageResource(android.R.drawable.ic_menu_gallery);
         }
 
-        holder.favoriteDelete.setOnClickListener(v -> deleteListener.onDeleteClick(favorite));
+        // Click en el item completo para abrir detalle
+        holder.itemView.setOnClickListener(v -> {
+            if (itemClickListener != null) {
+                itemClickListener.onItemClick(favorite);
+            }
+        });
+
+        // Click en el botón delete
+        holder.favoriteDelete.setOnClickListener(v -> {
+            if (deleteListener != null) {
+                deleteListener.onDeleteClick(favorite);
+            }
+        });
     }
 
     @Override

@@ -150,7 +150,7 @@ public class MovieDetailView extends AppCompatActivity implements MovieDetailCon
         }
 
         // Cargar estado de favorito
-        boolean isFavorite = favoriteMovieDao.findByTitle(movie.getTitle()) != null;
+        boolean isFavorite = favoriteMovieDao.findByMovieId(movieId) != null;
         favoriteCheckBox.setChecked(isFavorite);
     }
 
@@ -214,6 +214,7 @@ public class MovieDetailView extends AppCompatActivity implements MovieDetailCon
         if (isChecked) {
             // Añadir a favoritos
             FavoriteMovie favorite = new FavoriteMovie(
+                    movieId,
                     currentMovie.getTitle(),
                     currentMovie.getSynopsis(),
                     currentMovie.getReleaseDate(),
@@ -229,7 +230,7 @@ public class MovieDetailView extends AppCompatActivity implements MovieDetailCon
             Toast.makeText(this, R.string.added_to_favorites, Toast.LENGTH_SHORT).show();
         } else {
             // Eliminar de favoritos
-            favoriteMovieDao.deleteByTitle(currentMovie.getTitle());
+            favoriteMovieDao.deleteByMovieId(movieId);
             Toast.makeText(this, R.string.removed_from_favorites, Toast.LENGTH_SHORT).show();
         }
     }
