@@ -38,4 +38,16 @@
     <string name="review_not_found">Reseña no encontrada</string>
     <string name="error_deleting_review">Error eliminando reseña</string>
     <string name="edit_review">Editar Reseña</string>
+    <string name="preferences">Preferencias</string>
+    <string name="language">Idioma</string>
+    <string name="theme">Tema</string>
+    <string name="light_theme">Claro</string>
+    <string name="dark_theme">Oscuro</string>
+    <string name="system_theme">Predeterminado del sistema</string>
+    <string name="sort_movies_by">Ordenar películas por</string>
+    <string name="sort_by_title">Título</string>
+    <string name="sort_by_date">Fecha de estreno</string>
+    <string name="sort_by_rating">Valoración</string>
+    <string name="preferences_saved">Preferencias guardadas</string>
+    <string name="save">Guardar</string>
 </resources>

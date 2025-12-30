@@ -37,4 +37,16 @@
     <string name="review_not_found">Review not found</string>
     <string name="error_deleting_review">Error deleting review</string>
     <string name="edit_review">Edit Review</string>
+    <string name="preferences">Preferences</string>
+    <string name="language">Language</string>
+    <string name="theme">Theme</string>
+    <string name="light_theme">Light</string>
+    <string name="dark_theme">Dark</string>
+    <string name="system_theme">System default</string>
+    <string name="sort_movies_by">Sort movies by</string>
+    <string name="sort_by_title">Title</string>
+    <string name="sort_by_date">Release date</string>
+    <string name="sort_by_rating">Rating</string>
+    <string name="preferences_saved">Preferences saved</string>
+    <string name="save">Save</string>
 </resources>

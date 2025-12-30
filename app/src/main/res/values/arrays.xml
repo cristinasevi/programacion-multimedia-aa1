@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Idioma -->
+    <string-array name="language_entries">
+        <item>Español</item>
+        <item>English</item>
+    </string-array>
+
+    <string-array name="language_values">
+        <item>es</item>
+        <item>en</item>
+    </string-array>
+
+    <!-- Tema -->
+    <string-array name="theme_entries">
+        <item>@string/light_theme</item>
+        <item>@string/dark_theme</item>
+        <item>@string/system_theme</item>
+    </string-array>
+
+    <string-array name="theme_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <!-- Ordenar -->
+    <string-array name="sort_entries">
+        <item>@string/sort_by_title</item>
+        <item>@string/sort_by_date</item>
+        <item>@string/sort_by_rating</item>
+    </string-array>
+
+    <string-array name="sort_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+</resources>
