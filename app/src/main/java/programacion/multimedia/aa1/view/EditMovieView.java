@@ -160,6 +160,7 @@ public class EditMovieView extends AppCompatActivity implements EditMovieContrac
 
     @Override
     public void navigateToMovieDetail() {
+        setResult(RESULT_OK);
         finish(); // Vuelve a MovieDetailView
     }
 }

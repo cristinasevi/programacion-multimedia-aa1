@@ -6,6 +6,7 @@ import programacion.multimedia.aa1.domain.Movie;
 import programacion.multimedia.aa1.domain.Review;
 import programacion.multimedia.aa1.domain.Studio;
 import programacion.multimedia.aa1.dto.MovieCreateRequest;
+import programacion.multimedia.aa1.dto.MovieUpdateRequest;
 import programacion.multimedia.aa1.dto.ReviewCreateRequest;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -32,7 +33,7 @@ public interface MovieApiInterface {
     Call<Movie> registerMovie(@Body MovieCreateRequest movieRequest);
 
     @PUT("movies/{id}")
-    Call<Movie> updateMovie(@Path("id") long id, @Body Movie movie);
+    Call<Movie> updateMovie(@Path("id") long id, @Body MovieUpdateRequest movieRequest);
 
     @DELETE("movies/{id}")
     Call<Void> deleteMovie(@Path("id") long id);

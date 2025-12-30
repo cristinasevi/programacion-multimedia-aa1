@@ -50,4 +50,5 @@
     <string name="sort_by_rating">Valoración</string>
     <string name="preferences_saved">Preferencias guardadas</string>
     <string name="save">Guardar</string>
+    <string name="added_to_favorites">Añadida a favoritos</string>
 </resources>

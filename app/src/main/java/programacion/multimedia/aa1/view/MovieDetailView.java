@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
@@ -47,6 +49,8 @@ public class MovieDetailView extends AppCompatActivity implements MovieDetailCon
     private Button reviewsButton;
     private Button mapButton;
 
+    private ActivityResultLauncher<Intent> editMovieLauncher;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +66,16 @@ public class MovieDetailView extends AppCompatActivity implements MovieDetailCon
 
         presenter = new MovieDetailPresenter(this);
         favoriteMovieDao = DatabaseUtil.getDb(this).favoriteMovieDao();
+
+        editMovieLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK) {
+                        // Recargar la película actualizada
+                        presenter.loadMovie(movieId);
+                    }
+                }
+        );
 
         initViews();
         setupListeners();
@@ -172,7 +186,7 @@ public class MovieDetailView extends AppCompatActivity implements MovieDetailCon
     private void editMovie() {
         Intent intent = new Intent(this, EditMovieView.class);
         intent.putExtra(EditMovieView.MOVIE_ID, movieId);
-        startActivity(intent);
+        editMovieLauncher.launch(intent);
     }
 
     private void viewReviews() {
@@ -182,8 +196,16 @@ public class MovieDetailView extends AppCompatActivity implements MovieDetailCon
     }
 
     private void viewStudioOnMap() {
-        Intent intent = new Intent(this, StudiosMapView.class);
-        startActivity(intent);
+        if (currentMovie != null && currentMovie.getStudio() != null) {
+            long studioId = currentMovie.getStudio().getId();
+            String studioName = currentMovie.getStudio().getName();
+
+            Intent intent = new Intent(this, StudiosMapView.class);
+            intent.putExtra("STUDIO_ID", studioId);
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "No hay información del estudio", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void toggleFavorite(boolean isChecked) {
@@ -204,11 +226,11 @@ public class MovieDetailView extends AppCompatActivity implements MovieDetailCon
             );
 
             favoriteMovieDao.insert(favorite);
-            Toast.makeText(this, "Added to favorites", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.added_to_favorites, Toast.LENGTH_SHORT).show();
         } else {
             // Eliminar de favoritos
             favoriteMovieDao.deleteByTitle(currentMovie.getTitle());
-            Toast.makeText(this, "Removed from favorites", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.removed_from_favorites, Toast.LENGTH_SHORT).show();
         }
     }
 }

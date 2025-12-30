@@ -1,7 +1,5 @@
 package programacion.multimedia.aa1.model;
 
-import android.util.Log;
-
 import java.util.List;
 
 import programacion.multimedia.aa1.api.MovieApi;
@@ -9,6 +7,7 @@ import programacion.multimedia.aa1.api.MovieApiInterface;
 import programacion.multimedia.aa1.contract.EditMovieContract;
 import programacion.multimedia.aa1.domain.Movie;
 import programacion.multimedia.aa1.domain.Studio;
+import programacion.multimedia.aa1.dto.MovieUpdateRequest;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -16,17 +15,16 @@ import retrofit2.Response;
 public class EditMovieModel implements EditMovieContract.Model {
 
     @Override
-    public void updateMovie(long movieId, Movie movie, OnUpdateListener listener) {
+    public void updateMovie(long movieId, MovieUpdateRequest movieRequest, OnUpdateListener listener) {
         MovieApiInterface api = MovieApi.buildInstance();
 
-        Log.d("API_UPDATE", "Actualizando película: " + movie.toString());
-
-        Call<Movie> putMovieCall = api.updateMovie(movieId, movie);
+        Call<Movie> putMovieCall = api.updateMovie(movieId, movieRequest);
         putMovieCall.enqueue(new Callback<Movie>() {
             @Override
             public void onResponse(Call<Movie> call, Response<Movie> response) {
                 if (response.code() == 200) {
-                    listener.onUpdateSuccess(response.body());
+                    Movie updatedMovie = response.body();
+                    listener.onUpdateSuccess(updatedMovie);
                 } else if (response.code() == 400) {
                     listener.onUpdateError("Errores de validación");
                 } else if (response.code() == 404) {

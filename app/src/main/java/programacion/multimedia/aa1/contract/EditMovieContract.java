@@ -5,6 +5,7 @@ import java.util.List;
 
 import programacion.multimedia.aa1.domain.Movie;
 import programacion.multimedia.aa1.domain.Studio;
+import programacion.multimedia.aa1.dto.MovieUpdateRequest;
 
 public interface EditMovieContract {
 
@@ -24,7 +25,7 @@ public interface EditMovieContract {
             void onLoadStudiosError(String message);
         }
 
-        void updateMovie(long movieId, Movie movie, OnUpdateListener listener);
+        void updateMovie(long movieId, MovieUpdateRequest movieRequest, OnUpdateListener listener);
         void loadMovie(long movieId, OnLoadMovieListener listener);
         void loadStudios(OnLoadStudiosListener listener);
     }

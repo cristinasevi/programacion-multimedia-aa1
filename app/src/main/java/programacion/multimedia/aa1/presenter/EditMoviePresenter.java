@@ -6,6 +6,7 @@ import java.util.List;
 import programacion.multimedia.aa1.contract.EditMovieContract;
 import programacion.multimedia.aa1.domain.Movie;
 import programacion.multimedia.aa1.domain.Studio;
+import programacion.multimedia.aa1.dto.MovieUpdateRequest;
 import programacion.multimedia.aa1.model.EditMovieModel;
 
 public class EditMoviePresenter implements
@@ -51,17 +52,17 @@ public class EditMoviePresenter implements
             return;
         }
 
-        Movie movie = Movie.builder()
+        MovieUpdateRequest movieRequest = MovieUpdateRequest.builder()
                 .title(title)
                 .synopsis(synopsis)
                 .genre(genre)
                 .releaseDate(releaseDate)
                 .duration(duration)
                 .averageRating(rating)
-                .studio(studio)
+                .studioId(studio.getId())
                 .build();
 
-        model.updateMovie(movieId, movie, this);
+        model.updateMovie(movieId, movieRequest, this);
     }
 
     // Callbacks de actualización

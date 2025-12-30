@@ -27,11 +27,14 @@ public class StudiosMapView extends AppCompatActivity implements Style.OnStyleLo
 
     private MapView mapView;
     private PointAnnotationManager pointAnnotationManager;
+    private long studioId = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_studios_map);
+
+        studioId = getIntent().getLongExtra("STUDIO_ID", -1);
 
         mapView = findViewById(R.id.mapView);
         mapView.getMapboxMap().loadStyleUri(Style.MAPBOX_STREETS, this);
@@ -54,9 +57,25 @@ public class StudiosMapView extends AppCompatActivity implements Style.OnStyleLo
                 if (response.code() == 200 && response.body() != null) {
                     List<Studio> studios = response.body();
 
-                    if (!studios.isEmpty()) {
-                        Studio studio = studios.get(0);
-                        showStudioOnMap(studio);
+                    if (studioId != -1) {
+                        Studio targetStudio = null;
+                        for (Studio s : studios) {
+                            if (s.getId() == studioId) {
+                                targetStudio = s;
+                                break;
+                            }
+                        }
+
+                        if (targetStudio != null) {
+                            showStudioOnMap(targetStudio);
+                        } else {
+                            Toast.makeText(StudiosMapView.this, "Studio no encontrado", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        if (!studios.isEmpty()) {
+                            Studio studio = studios.get(0);
+                            showStudioOnMap(studio);
+                        }
                     }
                 }
             }
