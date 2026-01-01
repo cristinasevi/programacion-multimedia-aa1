@@ -17,6 +17,7 @@ public class EditMoviePresenter implements
 
     private EditMovieContract.Model model;
     private EditMovieContract.View view;
+    private String currentImageUrl;
 
     public EditMoviePresenter(EditMovieContract.View view) {
         this.model = new EditMovieModel();
@@ -56,10 +57,12 @@ public class EditMoviePresenter implements
                 .title(title)
                 .synopsis(synopsis)
                 .genre(genre)
+                .imageUrl(currentImageUrl)
                 .releaseDate(releaseDate)
                 .duration(duration)
                 .averageRating(rating)
                 .studioId(studio.getId())
+                .directorId(null)
                 .build();
 
         model.updateMovie(movieId, movieRequest, this);
@@ -80,6 +83,7 @@ public class EditMoviePresenter implements
     // Callbacks de carga de película
     @Override
     public void onLoadMovieSuccess(Movie movie) {
+        this.currentImageUrl = movie.getImageUrl();
         view.showMovie(movie);
     }
 

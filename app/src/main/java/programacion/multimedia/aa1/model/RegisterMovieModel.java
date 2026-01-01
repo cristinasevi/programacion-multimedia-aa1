@@ -27,7 +27,8 @@ public class RegisterMovieModel implements RegisterMovieContract.Model {
             @Override
             public void onResponse(Call<Movie> call, Response<Movie> response) {
                 if (response.code() == 201 || response.code() == 200) {
-                    listener.onRegisterSuccess(response.body());
+                    Movie addedMovie = response.body();
+                    listener.onRegisterSuccess(addedMovie);
                 } else if (response.code() == 400) {
                     listener.onRegisterError("Errores de validación");
                 } else if (response.code() == 500) {
